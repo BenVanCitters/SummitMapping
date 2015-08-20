@@ -29,6 +29,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] private AudioClip m_LandSound;           // the sound played when character touches back on ground.
 
         private Camera m_Camera;
+		private float m_CameraFOV;
+
+
         private bool m_Jump;
         private float m_YRotation;
         private Vector3 m_Input;
@@ -47,7 +50,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         {
             m_CharacterController = GetComponent<CharacterController>();
             m_Camera = Camera.main;
-            m_OriginalCameraPosition = m_Camera.transform.localPosition;
+			m_CameraFOV = m_Camera.fieldOfView;
+			m_OriginalCameraPosition = m_Camera.transform.localPosition;
             m_FovKick.Setup(m_Camera);
             m_HeadBob.Setup(m_Camera, m_StepInterval);
             m_StepCycle = 0f;
@@ -91,8 +95,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private void FixedUpdate()
         {
 			m_MouseLook.currentRoll += CrossPlatformInputManager.GetAxis("Tilt");
-			m_Camera.fieldOfView += CrossPlatformInputManager.GetAxis("Mouse ScrollWheel");
-			m_Camera.fieldOfView += CrossPlatformInputManager.GetAxis("Mouse ScrollWheel");
+//			Debug.Log ("m_CameraFOV: " + m_CameraFOV);
+			m_CameraFOV = 60 + 60*CrossPlatformInputManager.GetAxis("Mouse ScrollWheel");
+			m_Camera.fieldOfView = m_CameraFOV;
+
 
 			float speed;
             GetInput(out speed);
