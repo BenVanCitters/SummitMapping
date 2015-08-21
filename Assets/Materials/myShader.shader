@@ -12,7 +12,7 @@
 		
 		CGPROGRAM
 		// Physically based Standard lighting model, and enable shadows on all light types
-		#pragma surface surf Standard fullforwardshadows vertex:vert
+		#pragma surface surf Standard addshadow vertex:vert
 
 		// Use shader model 3.0 target, to get nicer looking lighting
 		#pragma target 3.0
@@ -20,8 +20,9 @@
             #include "UnityCG.cginc"
 
       float _Height;
+//      float _Time;
       void vert (inout appdata_full v) {
-      v.vertex.z +=_Height*( cos(v.vertex.y/2.2)*4+sin(v.vertex.x)*10);
+      v.vertex.z +=_Height*( cos(_Time[1]/2 + v.vertex.y/2.2)*4+sin(_Time[1] +v.vertex.x)*10);
       }
 		sampler2D _MainTex;
 
