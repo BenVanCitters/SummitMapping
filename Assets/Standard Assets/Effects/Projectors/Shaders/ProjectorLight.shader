@@ -32,8 +32,10 @@ Shader "Projector/Light" {
 			v2f vert (float4 vertex : POSITION)
 			{
 				v2f o;
+//				o.pos.z +=1*( cos(_Time[1]/2 + vertex.y/2.2)*4+sin(_Time[1] +vertex.x)*10);
 				o.pos = mul (UNITY_MATRIX_MVP, vertex);
 				o.uvShadow = mul (_Projector, vertex);
+				
 				o.uvFalloff = mul (_ProjectorClip, vertex);
 				UNITY_TRANSFER_FOG(o,o.pos);
 				return o;

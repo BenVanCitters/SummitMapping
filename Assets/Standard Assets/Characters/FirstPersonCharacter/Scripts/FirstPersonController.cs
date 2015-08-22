@@ -96,7 +96,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         {
 			m_MouseLook.currentRoll += CrossPlatformInputManager.GetAxis("Tilt");
 //			Debug.Log ("m_CameraFOV: " + m_CameraFOV);
-			m_CameraFOV = 60 + 60*CrossPlatformInputManager.GetAxis("Mouse ScrollWheel");
+//			m_CameraFOV = 60 + 60*CrossPlatformInputManager.GetAxis("Mouse ScrollWheel");
+			m_CameraFOV += 1*CrossPlatformInputManager.GetAxis("Mouse ScrollWheel");
 			m_Camera.fieldOfView = m_CameraFOV;
 
 
