@@ -50,9 +50,9 @@ public class MicTubes : MonoBehaviour
 			newPos.z = 20*samples[sampleIndex]/zScale ;
 			g.transform.localPosition= newPos;
 //			g.transform.position = newPos;
-			maxZ = Mathf.Max(maxZ,g.transform.position.z);
-			minZ = Mathf.Min(minZ,g.transform.position.z);
+//			maxZ = Mathf.Max(maxZ,g.transform.position.z);
+//			minZ = Mathf.Min(minZ,g.transform.position.z);
 		}
-		Debug.Log("min/max: " + minZ + "," + maxZ);
+//		Debug.Log("min/max: " + minZ + "," + maxZ);
 	}
 }
