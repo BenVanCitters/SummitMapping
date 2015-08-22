@@ -10,9 +10,9 @@ public class MoviePlayer : MonoBehaviour {
 //		Material material = gameObject.GetComponent<Material> ();
 		if (p != null) 
 		{
-			MovieTexture m = p.material.GetTexture("_ShadowTex") as MovieTexture; //mainTexture as MovieTexture;
-			m.loop = true;
-			m.Play();
+//			MovieTexture m = p.material.GetTexture("_ShadowTex") as MovieTexture; //mainTexture as MovieTexture;
+//			m.loop = true;
+//			m.Play();
 		}
 	}
 	

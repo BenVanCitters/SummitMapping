@@ -45,6 +45,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private bool m_Jumping;
         private AudioSource m_AudioSource;
 
+		private bool m_isFlying = true;
+
         // Use this for initialization
         private void Start()
         {
@@ -94,12 +96,13 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void FixedUpdate()
         {
-			m_MouseLook.currentRoll += CrossPlatformInputManager.GetAxis("Tilt");
+			if (!m_isFlying) {
+				m_MouseLook.currentRoll += CrossPlatformInputManager.GetAxis ("Tilt");
 //			Debug.Log ("m_CameraFOV: " + m_CameraFOV);
 //			m_CameraFOV = 60 + 60*CrossPlatformInputManager.GetAxis("Mouse ScrollWheel");
-			m_CameraFOV += 1*CrossPlatformInputManager.GetAxis("Mouse ScrollWheel");
-			m_Camera.fieldOfView = m_CameraFOV;
-
+				m_CameraFOV += 1 * CrossPlatformInputManager.GetAxis ("Mouse ScrollWheel");
+				m_Camera.fieldOfView = m_CameraFOV;
+			}
 
 			float speed;
             GetInput(out speed);
@@ -131,8 +134,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
             m_CollisionFlags = m_CharacterController.Move(m_MoveDir*Time.fixedDeltaTime);
 
-//            ProgressStepCycle(speed);
-//            UpdateCameraPosition(speed);
         }
 	
 
@@ -143,6 +144,17 @@ namespace UnityStandardAssets.Characters.FirstPerson
             float horizontal = CrossPlatformInputManager.GetAxis("Horizontal");
             float vertical = CrossPlatformInputManager.GetAxis("Vertical");
 			float upDown = CrossPlatformInputManager.GetAxis("upDown")*.2f;
+
+//			m_isFlying = CrossPlatformInputManager.GetButton ("start");
+
+			if (!m_isFlying) 
+			{
+				horizontal = 0;
+				vertical = 0;
+				upDown = 0;
+	
+			}
+			Debug.Log("m_isFly: " + m_isFlying);	
 
             bool waswalking = m_IsWalking;
 
