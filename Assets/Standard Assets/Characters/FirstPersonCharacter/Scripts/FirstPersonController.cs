@@ -45,7 +45,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private bool m_Jumping;
         private AudioSource m_AudioSource;
 
-		private bool m_isFlying = true;
+		private bool m_isFlying = false;
 
         // Use this for initialization
         private void Start()
@@ -145,7 +145,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             float vertical = CrossPlatformInputManager.GetAxis("Vertical");
 			float upDown = CrossPlatformInputManager.GetAxis("upDown")*.2f;
 
-//			m_isFlying = CrossPlatformInputManager.GetButton ("start");
+			m_isFlying = CrossPlatformInputManager.GetButton ("Start");
 
 			if (!m_isFlying) 
 			{
@@ -154,7 +154,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 				upDown = 0;
 	
 			}
-			Debug.Log("m_isFly: " + m_isFlying);	
+			Debug.Log("m_isFly: " + CrossPlatformInputManager.GetButton ("Start"));	
 
             bool waswalking = m_IsWalking;
 

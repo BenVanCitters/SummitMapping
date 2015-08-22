@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+using UnityStandardAssets.CrossPlatformInput;
 public class MicTubes : MonoBehaviour 
 {
 	ArrayList tubes;
@@ -34,7 +35,9 @@ public class MicTubes : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-//		float amt = CrossPlatformInputManager.GetAxis("axis3")*.2f;
+		float motionAmplitude = CrossPlatformInputManager.GetAxis("AmpAxis");
+		float maxAmp = 30.0f;
+		float maxForwardPush = 0.5f;
 		float[] samples = new float[currentClip.samples * currentClip.channels];
 		currentClip.GetData(samples, 0);
 
@@ -47,7 +50,7 @@ public class MicTubes : MonoBehaviour
 			GameObject g = (GameObject)tubes[i];
 			int sampleIndex = (currentPos-i+samples.Length)%samples.Length;
 			Vector3 newPos = g.transform.localPosition;
-			newPos.z = 20*samples[sampleIndex]/zScale ;
+			newPos.z = maxAmp*motionAmplitude*samples[sampleIndex]/zScale + maxForwardPush*motionAmplitude;
 			g.transform.localPosition= newPos;
 //			g.transform.position = newPos;
 //			maxZ = Mathf.Max(maxZ,g.transform.position.z);

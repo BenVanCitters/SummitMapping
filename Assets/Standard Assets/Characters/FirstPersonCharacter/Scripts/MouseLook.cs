@@ -31,9 +31,16 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         public void LookRotation(Transform character, Transform camera)
         {
+			bool isFlying = CrossPlatformInputManager.GetButton ("Start");
+			
+
             float yRot = CrossPlatformInputManager.GetAxis("Mouse X") * XSensitivity;
             float xRot = CrossPlatformInputManager.GetAxis("Mouse Y") * YSensitivity;
-
+			if (!isFlying) 
+			{
+				yRot = 0;
+					xRot = 0;
+			}
             m_CharacterTargetRot *= Quaternion.Euler (0f, yRot, 0f);
             m_CameraTargetRot *= Quaternion.Euler (-xRot, 0f, 0f);
 			m_CameraTargetRot *= Quaternion.Euler (0f, 0f, CrossPlatformInputManager.GetAxis("Tilt"));
