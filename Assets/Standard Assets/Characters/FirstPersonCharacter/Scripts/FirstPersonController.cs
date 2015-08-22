@@ -154,7 +154,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 				upDown = 0;
 	
 			}
-			Debug.Log("m_isFly: " + CrossPlatformInputManager.GetButton ("Start"));	
+			//Debug.Log("m_isFly: " + CrossPlatformInputManager.GetButton ("Start"));	
 
             bool waswalking = m_IsWalking;
 

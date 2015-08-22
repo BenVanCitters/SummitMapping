@@ -36,7 +36,7 @@ public class MicTubes : MonoBehaviour
 	void Update () 
 	{
 		float motionAmplitude = CrossPlatformInputManager.GetAxis("AmpAxis");
-		float maxAmp = 30.0f;
+		float maxAmp = 50.0f;
 		float maxForwardPush = 0.5f;
 		float[] samples = new float[currentClip.samples * currentClip.channels];
 		currentClip.GetData(samples, 0);

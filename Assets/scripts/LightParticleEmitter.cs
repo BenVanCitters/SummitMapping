@@ -19,7 +19,7 @@ public class LightParticleEmitter : MonoBehaviour
 		bool genLight = CrossPlatformInputManager.GetButton("Fire1"); 
 		if(genLight)
 		{
-			Instantiate(lightParticlePrefab, gameObject.transform.position,Quaternion.identity);
+			Instantiate(lightParticlePrefab, gameObject.transform.position+ new Vector3(0,0,-6),Quaternion.identity);
 		}
 	}
 }
